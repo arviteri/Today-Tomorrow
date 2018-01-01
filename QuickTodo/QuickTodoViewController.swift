@@ -18,11 +18,15 @@ class QuickTodoViewController: UITableViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
+        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+        self.preferredContentSize.height = CGFloat(2 * 55)
         tableView.isScrollEnabled = false
+        tableView.rowHeight = 55
+        print(self.tableView.contentSize.height)
         initiateRealmTest()
         loadItems()
     }
+    
     
     //MARK: - TableView Data Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,20 +74,35 @@ class QuickTodoViewController: UITableViewController, NCWidgetProviding {
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadData()
+        self.widgetPerformUpdate { (result) in
+            self.preferredContentSize.height = CGFloat((self.todoItems?.count)! * 55)
+        }
     }
     
     
+    
+    //MARK: - Widget Methods
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        // Perform any setup necessary in order to update the view.
-        
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-        
         completionHandler(NCUpdateResult.newData)
     }
     
     
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        let deadlineTime = DispatchTime.now() + 0.2 //Used to view expansion working improperly. iOS bug.
+        if activeDisplayMode == .expanded {
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+                self.preferredContentSize.height = CGFloat((self.todoItems?.count)! * 55)
+            }
+        } else if activeDisplayMode == .compact {
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+                self.preferredContentSize = maxSize
+            }
+        }
+    }
+    
+    
+    
+    //MARK: - Realm Database Methods
     func initiateRealmTest() {
         //Change Realm Database Location
         let fileURL = FileManager.default
@@ -101,7 +120,7 @@ class QuickTodoViewController: UITableViewController, NCWidgetProviding {
         }
     }
     
-    //MARK: - Realm Database Methods
+    
     func loadItems() {
         let endOfDay : [Int] = [23-Date().hour, 59-Date().minute, 59-Date().second]
         let tomorrow = (endOfDay[0].hours + endOfDay[1].minutes + endOfDay[2].seconds).fromNow()! as NSDate
