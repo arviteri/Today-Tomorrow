@@ -13,7 +13,8 @@ import SwiftDate
 class ToDoItem: Object {
     
     @objc dynamic var title : String = ""
-    @objc dynamic var date: Date = Date()
+    @objc dynamic var dateCreated: Date = Date()
+    @objc dynamic var dateCompleted: Date?
     @objc dynamic var isMustDo: Bool = false
     @objc dynamic var dailyItem : Bool = false
     @objc dynamic var completed : Bool = false
