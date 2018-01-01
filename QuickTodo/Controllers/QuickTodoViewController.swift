@@ -10,14 +10,16 @@ import UIKit
 import NotificationCenter
 import RealmSwift
 import SwiftDate
+import BEMCheckBox
 
-class QuickTodoViewController: UITableViewController, NCWidgetProviding {
+class QuickTodoViewController: UITableViewController, NCWidgetProviding, BEMCheckBoxDelegate {
     
     var todoItems:Results<ToDoItem>?
     var realm:Realm?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(UINib(nibName: "CheckBoxCell", bundle: nil), forCellReuseIdentifier: "checkBoxCell")
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         self.preferredContentSize.height = CGFloat(2 * 55)
         tableView.isScrollEnabled = false
@@ -34,14 +36,18 @@ class QuickTodoViewController: UITableViewController, NCWidgetProviding {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell: CheckBoxCell = tableView.dequeueReusableCell(withIdentifier: "checkBoxCell", for: indexPath) as! CheckBoxCell
+        cell.checkBoxView.delegate = self
+        cell.checkBoxView.isUserInteractionEnabled = false
         guard let currentItem = todoItems?[indexPath.row] else {fatalError("FATAL: Error displaying tableview data.")}
-        if currentItem.isMustDo { cell.textLabel?.textColor = UIColor.black } else {
-            cell.textLabel?.textColor = UIColor.darkGray
+        if currentItem.isMustDo {
+            cell.label?.textColor = UIColor.black }
+        else {
+            cell.label?.textColor = UIColor.darkGray
         }
-        
+
         let todoTitle = currentItem.dailyItem ? "• " + currentItem.title : currentItem.title
-        
+
         if currentItem.completed {
             let attributedString = NSMutableAttributedString(string: todoTitle)
             if currentItem.dailyItem {
@@ -49,11 +55,11 @@ class QuickTodoViewController: UITableViewController, NCWidgetProviding {
             } else {
                 attributedString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: NSMakeRange(0, attributedString.length))
             }
-            cell.textLabel?.attributedText = attributedString
+            cell.label?.attributedText = attributedString
             cell.accessoryType = .checkmark
-            
+
         } else {
-            cell.textLabel?.attributedText = NSMutableAttributedString(string: todoTitle)
+            cell.label?.attributedText = NSMutableAttributedString(string: todoTitle)
             cell.accessoryType = .none
         }
         
@@ -63,29 +69,33 @@ class QuickTodoViewController: UITableViewController, NCWidgetProviding {
     //MARK: - TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectedItem = todoItems?[indexPath.row] {
-            do {
-                try realm?.write {
-                    selectedItem.completed = !selectedItem.completed
-                    selectedItem.dateCompleted = Date()
+            let cell = tableView.cellForRow(at: indexPath) as! CheckBoxCell
+            cell.checkBoxView.setOn(true, animated: true)
+            let deadlineTime = DispatchTime.now() + 0.5 //Used to wait for animation to complete
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+                do {
+                    try self.realm?.write {
+                        selectedItem.completed = !selectedItem.completed
+                        selectedItem.dateCompleted = Date()
+                    }
+                } catch {
+                    print("Error upating ToDoItem attribute after selection: \(error)")
                 }
-            } catch {
-                print("Error upating ToDoItem attribute after selection: \(error)")
+                cell.checkBoxView.on = false
+                tableView.reloadData()
+                self.widgetPerformUpdate { (result) in
+                    self.preferredContentSize.height = CGFloat((self.todoItems?.count)! * 55)
+                }
             }
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        tableView.reloadData()
-        self.widgetPerformUpdate { (result) in
-            self.preferredContentSize.height = CGFloat((self.todoItems?.count)! * 55)
-        }
     }
-    
     
     
     //MARK: - Widget Methods
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         completionHandler(NCUpdateResult.newData)
     }
-    
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         let deadlineTime = DispatchTime.now() + 0.2 //Used to view expansion working improperly. iOS bug.
@@ -119,7 +129,6 @@ class QuickTodoViewController: UITableViewController, NCWidgetProviding {
             fatalError("Error initiating Realm Database:  \(error)")
         }
     }
-    
     
     func loadItems() {
         let endOfDay : [Int] = [23-Date().hour, 59-Date().minute, 59-Date().second]

@@ -13,6 +13,8 @@
 		490298431FF9CCA600D74BE0 /* QuickTodo.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 490298371FF9CCA600D74BE0 /* QuickTodo.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4902984B1FF9CD6400D74BE0 /* QuickTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902984A1FF9CD6400D74BE0 /* QuickTodoViewController.swift */; };
 		490298541FF9E8D400D74BE0 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490298531FF9E8D400D74BE0 /* ToDoItem.swift */; };
+		4912495F1FFAABDB00E9B5AA /* CheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912495D1FFAABDB00E9B5AA /* CheckBoxCell.swift */; };
+		491249601FFAABDB00E9B5AA /* CheckBoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4912495E1FFAABDB00E9B5AA /* CheckBoxCell.xib */; };
 		491743C91FF87D3A0026452D /* TodayTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491743C81FF87D3A0026452D /* TodayTableView.swift */; };
 		491743CD1FF881FC0026452D /* TomorrowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491743CC1FF881FC0026452D /* TomorrowViewController.swift */; };
 		491743CF1FF885DE0026452D /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491743CE1FF885DE0026452D /* SwipeTableViewController.swift */; };
@@ -60,6 +62,8 @@
 		490298501FF9E2C900D74BE0 /* Simple Todo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Simple Todo.entitlements"; sourceTree = "<group>"; };
 		490298511FF9E60100D74BE0 /* QuickTodo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickTodo.entitlements; sourceTree = "<group>"; };
 		490298531FF9E8D400D74BE0 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		4912495D1FFAABDB00E9B5AA /* CheckBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxCell.swift; sourceTree = "<group>"; };
+		4912495E1FFAABDB00E9B5AA /* CheckBoxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckBoxCell.xib; sourceTree = "<group>"; };
 		491743C81FF87D3A0026452D /* TodayTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayTableView.swift; sourceTree = "<group>"; };
 		491743CC1FF881FC0026452D /* TomorrowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowViewController.swift; sourceTree = "<group>"; };
 		491743CE1FF885DE0026452D /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
@@ -99,10 +103,11 @@
 		4902983A1FF9CCA600D74BE0 /* QuickTodo */ = {
 			isa = PBXGroup;
 			children = (
+				491249521FFAA52200E9B5AA /* CheckBoxCell */,
 				490298521FF9E8AE00D74BE0 /* Data Model */,
 				490298511FF9E60100D74BE0 /* QuickTodo.entitlements */,
-				4902984A1FF9CD6400D74BE0 /* QuickTodoViewController.swift */,
-				4902983D1FF9CCA600D74BE0 /* MainInterface.storyboard */,
+				491249501FFAA50900E9B5AA /* Controllers */,
+				491249511FFAA51500E9B5AA /* Supporting Files */,
 				490298401FF9CCA600D74BE0 /* Info.plist */,
 			);
 			path = QuickTodo;
@@ -114,6 +119,31 @@
 				490298531FF9E8D400D74BE0 /* ToDoItem.swift */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		491249501FFAA50900E9B5AA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4902984A1FF9CD6400D74BE0 /* QuickTodoViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		491249511FFAA51500E9B5AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4902983D1FF9CCA600D74BE0 /* MainInterface.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		491249521FFAA52200E9B5AA /* CheckBoxCell */ = {
+			isa = PBXGroup;
+			children = (
+				4912495D1FFAABDB00E9B5AA /* CheckBoxCell.swift */,
+				4912495E1FFAABDB00E9B5AA /* CheckBoxCell.xib */,
+			);
+			path = CheckBoxCell;
 			sourceTree = "<group>";
 		};
 		491743D01FF886800026452D /* Controllers */ = {
@@ -262,6 +292,7 @@
 				TargetAttributes = {
 					490298361FF9CCA600D74BE0 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -304,6 +335,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491249601FFAABDB00E9B5AA /* CheckBoxCell.xib in Resources */,
 				4902983F1FF9CCA600D74BE0 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +415,7 @@
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -390,6 +423,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -418,6 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4912495F1FFAABDB00E9B5AA /* CheckBoxCell.swift in Sources */,
 				490298541FF9E8D400D74BE0 /* ToDoItem.swift in Sources */,
 				4902984B1FF9CD6400D74BE0 /* QuickTodoViewController.swift in Sources */,
 			);
@@ -477,6 +512,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3CFF189B778FC3C59E5E1BF4 /* Pods-QuickTodo.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QuickTodo/QuickTodo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5AD3GF88X5;
@@ -486,6 +522,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aviteri.Simple-Todo.QuickTodo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -495,6 +535,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8A8B9357B5412BC1C852D1FE /* Pods-QuickTodo.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QuickTodo/QuickTodo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5AD3GF88X5;
@@ -504,6 +545,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aviteri.Simple-Todo.QuickTodo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

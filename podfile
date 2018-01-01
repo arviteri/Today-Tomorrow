@@ -15,4 +15,5 @@ end
 target 'QuickTodo' do
 	pod 'RealmSwift'
 	pod 'SwiftDate'
+	pod 'BEMCheckBox'
 end
