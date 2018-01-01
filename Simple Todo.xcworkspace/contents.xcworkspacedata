@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Simple Todo.xcodeproj">
+      location = "group:/Users/Andrew/Documents/xCode/Simple Todo/Today Tomorrow.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

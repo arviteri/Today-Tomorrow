@@ -311,7 +311,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4924521C1FF6549C0089EAFE /* Build configuration list for PBXProject "Simple Todo" */;
+			buildConfigurationList = 4924521C1FF6549C0089EAFE /* Build configuration list for PBXProject "Today Tomorrow" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -710,7 +710,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4924521C1FF6549C0089EAFE /* Build configuration list for PBXProject "Simple Todo" */ = {
+		4924521C1FF6549C0089EAFE /* Build configuration list for PBXProject "Today Tomorrow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				492452311FF6549C0089EAFE /* Debug */,

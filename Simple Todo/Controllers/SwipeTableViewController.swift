@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import SwipeCellKit
+import NotificationCenter
 
 class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegate {
     
@@ -18,19 +19,11 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         .appendingPathComponent("default.realm"))) //OKAY. Checked Realm initiation in AppDelegate.swift
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.becameActive), name: .UIApplicationDidBecomeActive, object: nil)
         tableView.rowHeight = 80
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        tableView.reloadData()
-//    }
-//    
-//    override func viewDidDisappear(_ animated: Bool) {
-//        tableView.reloadData()
-//    }
 
     
     //MARK: - TableView Datasource Methods
@@ -103,9 +96,14 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
             } catch {
                 print("Error modifying ToDoItem attribute in Realm Database: \(error)")
             }
+            (tableView.cellForRow(at: indexPath) as! SwipeTableViewCell).hideSwipe(animated: true)
+            let deadlineTime = DispatchTime.now() + 0.5 //Used to wait for animation to complete
+            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+                tableView.reloadData()
+            }
         }
-        
         deleteAction.image = UIImage(named: "Trash")
+        markDailyAction.image = UIImage(named: "Calendar")
         return [deleteAction, markDailyAction]
     }
     
@@ -113,10 +111,10 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
         var options = SwipeTableOptions()
         options.expansionStyle = .destructive
+        options.transitionStyle = .drag
         return options
     }
     
-
     
     
     //MARK: - UIAlert Action Creation Function
@@ -133,6 +131,13 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
             }
         }
         return action
+    }
+    
+    
+    
+    //MARK: - Observer Methods
+    @objc func becameActive() {
+        tableView.reloadData()
     }
     
     
