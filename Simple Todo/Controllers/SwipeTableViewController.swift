@@ -33,14 +33,18 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SwipeTableViewCell
+        guard let currentItem = todoItems?[indexPath.row] else { fatalError("FATAL: Error displaying tableview data.") }
+        let todoTitle = currentItem.dailyItem ? "• " + currentItem.title : currentItem.title
         cell.delegate = self
-        guard let currentItem = todoItems?[indexPath.row] else {fatalError("FATAL: Error displaying tableview data.")}
-        if currentItem.isMustDo { cell.textLabel?.textColor = UIColor.black } else {
+        
+        //Change label color depending on isMustDo property
+        if currentItem.isMustDo {
+            cell.textLabel?.textColor = UIColor.black
+            
+        } else {
             cell.textLabel?.textColor = UIColor.darkGray
         }
-        
-        let todoTitle = currentItem.dailyItem ? "• " + currentItem.title : currentItem.title
-        
+        //Cross out label's text depending on completed property
         if currentItem.completed {
             let attributedString = NSMutableAttributedString(string: todoTitle)
             if currentItem.dailyItem {
@@ -50,12 +54,10 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
             }
             cell.textLabel?.attributedText = attributedString
             cell.accessoryType = .checkmark
-            
         } else {
             cell.textLabel?.attributedText = NSMutableAttributedString(string: todoTitle)
             cell.accessoryType = .none
         }
-        
         return cell
     }
     
@@ -83,30 +85,22 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         guard let currentItem = todoItems?[indexPath.row] else { fatalError("Error creating SwipeTableViewCell actions.") }
+        
+        //Delete Action
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             self.deleteItem(at: indexPath)
         }
-        
-        let markDailyTitle = currentItem.dailyItem ? "Unmark Daily Item" : "Mark Daily Item"
-        let markDailyAction = SwipeAction(style: .default, title: markDailyTitle) { (action, indexPath) in
-            do {
-                try self.realm.write {
-                    currentItem.dailyItem = !currentItem.dailyItem
-                }
-            } catch {
-                print("Error modifying ToDoItem attribute in Realm Database: \(error)")
-            }
-            (tableView.cellForRow(at: indexPath) as! SwipeTableViewCell).hideSwipe(animated: true)
-            let deadlineTime = DispatchTime.now() + 0.5 //Used to wait for animation to complete
-            DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-                tableView.reloadData()
-            }
-        }
         deleteAction.image = UIImage(named: "Trash")
+        
+        //Mark-as-Daily Action
+        let markDailyTitle = currentItem.dailyItem ? "Unmark As Daily" : "Mark As Daily"
+        let markDailyAction = SwipeAction(style: .default, title: markDailyTitle) { (action, indexPath) in
+            self.markDailyItem(item: currentItem, at: indexPath)
+        }
         markDailyAction.image = UIImage(named: "Calendar")
+        
         return [deleteAction, markDailyAction]
     }
-    
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
         var options = SwipeTableOptions()
@@ -117,7 +111,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
     
     
     
-    //MARK: - UIAlert Action Creation Function
+    //MARK: - UIAlert Action Creation Function -- USED ONLY IN SUBCLASSES
     func createAction(title: String, textField: UITextField, mustDo: Bool, daysAhead: Int = 0) -> UIAlertAction {
         let action = UIAlertAction(title: title, style: .default) { (action) in
             if let textInput = textField.text {
@@ -181,6 +175,24 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
             } catch {
                 print("Error deleting ToDoItem from Realm Database: \(error)")
             }
+        }
+    }
+    
+    func markDailyItem(item: ToDoItem, at indexPath: IndexPath) {
+        let deadlineTime = DispatchTime.now() + 0.5 //Used to wait for animation to complete
+        let currentCell = tableView.cellForRow(at: indexPath) as! SwipeTableViewCell
+        
+        do {
+            try self.realm.write {
+                item.dailyItem = !item.dailyItem
+            }
+        } catch {
+            print("Error modifying ToDoItem attribute in Realm Database: \(error)")
+        }
+        
+        currentCell.hideSwipe(animated: true)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.tableView.reloadData()
         }
     }
 

@@ -107,7 +107,7 @@
 				490298521FF9E8AE00D74BE0 /* Data Model */,
 				490298511FF9E60100D74BE0 /* QuickTodo.entitlements */,
 				491249501FFAA50900E9B5AA /* Controllers */,
-				491249511FFAA51500E9B5AA /* Supporting Files */,
+				491249511FFAA51500E9B5AA /* Views */,
 				490298401FF9CCA600D74BE0 /* Info.plist */,
 			);
 			path = QuickTodo;
@@ -129,12 +129,12 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		491249511FFAA51500E9B5AA /* Supporting Files */ = {
+		491249511FFAA51500E9B5AA /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				4902983D1FF9CCA600D74BE0 /* MainInterface.storyboard */,
 			);
-			path = "Supporting Files";
+			path = Views;
 			sourceTree = "<group>";
 		};
 		491249521FFAA52200E9B5AA /* CheckBoxCell */ = {
