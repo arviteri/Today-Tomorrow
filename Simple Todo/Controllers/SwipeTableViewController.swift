@@ -24,6 +24,10 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         NotificationCenter.default.addObserver(self, selector: #selector(self.becameActive), name: .UIApplicationDidBecomeActive, object: nil)
         tableView.rowHeight = 80
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 
     
     //MARK: - TableView Datasource Methods
