@@ -34,14 +34,14 @@ No longer have to do an item? You can delete the item by swiping from the right 
 
 <br />
 
-### Important To-Do's
+### Important To-Do's:
 
 Today Tomorrow was inspired by a 'Must-Do'/'Should-Do' list. When creating an item, tap "Must Do" if this is an item that you must do. Tap "Should Do" if this is an item that you should do. 'Must-Do' items are displayed on the top of the list in black. 'Should-Do' items are displayed at the bottom of the list in dark-gray.
 
 <img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/popup.png" width="350"><img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/mustshould.png" width="350">
 <br />
 
-### Today Extension
+### Today Extension:
 
 Today Tomorrow offers a Today Extension which displays all of today's uncompleted items which are not Daily Item's
 
