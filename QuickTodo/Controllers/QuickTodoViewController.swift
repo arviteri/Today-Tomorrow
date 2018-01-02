@@ -56,9 +56,11 @@ class QuickTodoViewController: UITableViewController, NCWidgetProviding, BEMChec
         
         //Change label color depending on isMustDo property
         if currentItem.isMustDo {
-            cell.label?.textColor = UIColor.black }
-        else {
+            cell.label?.textColor = UIColor.black
+            cell.checkBoxView.tintColor = UIColor.black
+        } else {
             cell.label?.textColor = UIColor.darkGray
+            cell.checkBoxView.tintColor = UIColor.darkGray
         }
         //Cross out label's text depending on completed property
         let todoTitle = currentItem.dailyItem ? "• " + currentItem.title : currentItem.title

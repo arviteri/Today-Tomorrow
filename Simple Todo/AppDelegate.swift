@@ -23,14 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .appendingPathComponent("default.realm")
         let config = Realm.Configuration(fileURL: fileURL)
         
+        
         //Attempt to initiate Realm Database
         do {
             let initiationRealm : Realm = try Realm(configuration: config)
             initiationRealm.refresh()
+             print(initiationRealm.configuration.fileURL) //DELETE
         } catch {
             fatalError("Error initiating Realm Database:  \(error)")
         }
-
+       
         return true
     }
 

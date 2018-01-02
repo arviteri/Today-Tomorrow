@@ -16,8 +16,8 @@ class CheckBoxCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkBoxView.onAnimationType = .oneStroke
-        checkBoxView.offAnimationType = .oneStroke
+        checkBoxView.onAnimationType = .fill
+        checkBoxView.offAnimationType = .fill
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -14,32 +14,62 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CheckBoxCell" customModule="QuickTodo" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999999999999996" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBp-jZ-loY" customClass="BEMCheckBox">
-                        <rect key="frame" x="16" y="7" width="30" height="30"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7J-ZL-bg3" userLabel="CheckBoxContainer">
+                        <rect key="frame" x="0.0" y="0.0" width="54" height="44"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBp-jZ-loY" customClass="BEMCheckBox">
+                                <rect key="frame" x="14.5" y="9.5" width="25" height="25"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="79q-Pk-YVj"/>
+                                    <constraint firstAttribute="width" constant="25" id="xI9-AT-aGv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="onFillColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="onCheckColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="58M-aD-Cn1"/>
-                            <constraint firstAttribute="height" constant="30" id="vrU-cU-kbh"/>
+                            <constraint firstAttribute="width" constant="54" id="eUl-kd-h7j"/>
+                            <constraint firstItem="BBp-jZ-loY" firstAttribute="centerY" secondItem="W7J-ZL-bg3" secondAttribute="centerY" id="rpX-ag-7Dm"/>
+                            <constraint firstItem="BBp-jZ-loY" firstAttribute="centerX" secondItem="W7J-ZL-bg3" secondAttribute="centerX" id="vdh-mx-83f"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpz-Lj-ucy">
-                        <rect key="frame" x="72" y="0.0" width="0.0" height="44"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gq-ac-gnK" userLabel="LabelContainer">
+                        <rect key="frame" x="54" y="0.0" width="266" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpz-Lj-ucy">
+                                <rect key="frame" x="0.0" y="0.0" width="52" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Bpz-Lj-ucy" firstAttribute="leading" secondItem="4gq-ac-gnK" secondAttribute="leading" id="8Nc-0b-Dkn"/>
+                            <constraint firstItem="Bpz-Lj-ucy" firstAttribute="top" secondItem="4gq-ac-gnK" secondAttribute="top" id="j64-O8-3dd"/>
+                            <constraint firstAttribute="bottom" secondItem="Bpz-Lj-ucy" secondAttribute="bottom" id="zCT-5c-gMT"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Bpz-Lj-ucy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6mJ-xk-dOe"/>
-                    <constraint firstAttribute="bottom" secondItem="Bpz-Lj-ucy" secondAttribute="bottom" id="ZGn-re-YEt"/>
-                    <constraint firstItem="BBp-jZ-loY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dBy-Va-eFl"/>
-                    <constraint firstItem="Bpz-Lj-ucy" firstAttribute="leading" secondItem="BBp-jZ-loY" secondAttribute="trailing" constant="26" id="gkN-Mz-JE1"/>
-                    <constraint firstAttribute="bottom" secondItem="BBp-jZ-loY" secondAttribute="bottom" constant="6.75" id="l4x-Fn-K9n"/>
-                    <constraint firstItem="BBp-jZ-loY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6.75" id="uhH-Si-R0C"/>
+                    <constraint firstAttribute="trailing" secondItem="4gq-ac-gnK" secondAttribute="trailing" id="3TM-uK-3Zp"/>
+                    <constraint firstItem="W7J-ZL-bg3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CvC-xX-fKA"/>
+                    <constraint firstItem="W7J-ZL-bg3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Fe9-sz-Gxu"/>
+                    <constraint firstItem="4gq-ac-gnK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="G14-75-b3p"/>
+                    <constraint firstItem="4gq-ac-gnK" firstAttribute="leading" secondItem="W7J-ZL-bg3" secondAttribute="trailing" id="Lbc-Aa-Vh9"/>
+                    <constraint firstAttribute="bottom" secondItem="4gq-ac-gnK" secondAttribute="bottom" id="bUo-Si-4l4"/>
+                    <constraint firstItem="4gq-ac-gnK" firstAttribute="leading" secondItem="W7J-ZL-bg3" secondAttribute="trailing" id="ruw-gj-lvn"/>
+                    <constraint firstAttribute="bottom" secondItem="W7J-ZL-bg3" secondAttribute="bottom" id="zLu-AI-Gbn"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
