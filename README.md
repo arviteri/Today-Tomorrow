@@ -2,8 +2,7 @@
 
 Live life one day at a time. 
 
-Today Tomorrow is a to-do list specifically for today. It was created to replace the paper to-do I use daily. 
-
+Today Tomorrow is a to-do list specifically for today. It was created to replace the paper to-do list I use daily. 
 
 
 ## Features of Today Tomorrow include... 
