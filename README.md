@@ -1,4 +1,4 @@
-# Today_Tomorrow
+# Today Tomorrow
 
 Live life one day at a time. 
 
@@ -44,7 +44,7 @@ Today Tomorrow was inspired by a 'Must-Do'/'Should-Do' list. When creating an it
 
 Today Tomorrow offers a Today Extension which displays all of today's uncompleted items which are not Daily Item's
 
-<img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/extension.gif" width="350">
+<img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/newextension.gif" width="350">
 <br />
 
 #
