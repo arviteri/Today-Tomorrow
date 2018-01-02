@@ -2,8 +2,7 @@
 
 Live life one day at a time. 
 
-Today Tomorrow is a to-do list specifically for today. It was created to replace the paper to-do I use daily. 
-
+Today Tomorrow is a to-do list specifically for today. It was created to replace the paper to-do list I use daily. 
 
 
 ## Features of Today Tomorrow include... 
@@ -30,20 +29,23 @@ Mark an item as a 'Daily Item' to reset the item at the end of the day without h
 
 ### Swipe Deletion:
 
-No longer have to do an item? You can delete the item by swiping from the right to reveal the item's options and tapping delete, or you can use Swipe Deletion, by dragging from the right, across the screen. Swipe Deletion is a feature provided through the Cocoapod 'SwipeCellKit'
+No longer have to do an item? You can delete the item by swiping from the right to reveal the item's options and tapping delete. You can also use Swipe Deletion by dragging the item all the way across the screen. Swipe Deletion is a feature provided through the Cocoapod 'SwipeCellKit'
 
 <br />
 
-### Important To-Do's
+### Important To-Do's:
 
 Today Tomorrow was inspired by a 'Must-Do'/'Should-Do' list. When creating an item, tap "Must Do" if this is an item that you must do. Tap "Should Do" if this is an item that you should do. 'Must-Do' items are displayed on the top of the list in black. 'Should-Do' items are displayed at the bottom of the list in dark-gray.
 
 <img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/popup.png" width="350"><img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/mustshould.png" width="350">
 <br />
 
-### Today Extension
+### Today Extension:
 
 Today Tomorrow offers a Today Extension which displays all of today's uncompleted items which are not Daily Item's
+
+<img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/extension.gif" width="350">
+<br />
 
 #
 #### Cocoapods used in Today Tomorrow: 
