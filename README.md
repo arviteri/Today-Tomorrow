@@ -30,7 +30,7 @@ Mark an item as a 'Daily Item' to reset the item at the end of the day without h
 
 ### Swipe Deletion:
 
-No longer have to do an item? You can delete the item by swiping from the right to reveal the item's options and tapping delete, or you can use Swipe Deletion, by dragging from the right, across the screen. Swipe Deletion is a feature provided through the Cocoapod 'SwipeCellKit'
+No longer have to do an item? You can delete the item by swiping from the right to reveal the item's options and tapping delete. You can also use Swipe Deletion by dragging the item all the way across the screen. Swipe Deletion is a feature provided through the Cocoapod 'SwipeCellKit'
 
 <br />
 
@@ -44,6 +44,9 @@ Today Tomorrow was inspired by a 'Must-Do'/'Should-Do' list. When creating an it
 ### Today Extension
 
 Today Tomorrow offers a Today Extension which displays all of today's uncompleted items which are not Daily Item's
+
+<img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/extension.gif" width="350">
+<br />
 
 #
 #### Cocoapods used in Today Tomorrow: 
