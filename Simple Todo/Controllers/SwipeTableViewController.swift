@@ -123,9 +123,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
                 itemToSave.title = textInput
                 itemToSave.isMustDo = mustDo
                 itemToSave.dateCreated = (daysAhead.days).fromNow()!
-                self.saveItem(item: itemToSave)
-            } else {
-                self.dismiss(animated: true, completion: nil)
+                if textInput.count > 0 { self.saveItem(item: itemToSave) }
             }
         }
         return action
