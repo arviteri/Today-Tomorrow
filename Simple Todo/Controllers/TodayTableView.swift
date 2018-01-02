@@ -8,18 +8,16 @@
 import UIKit
 import RealmSwift
 import SwiftDate
+import NotificationCenter
 
 class TodayTableView: SwipeTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        removeCompletedData()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.removeCompletedData), name: .UIApplicationDidBecomeActive, object: nil)
         loadItems()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        removeCompletedData()
-    }
     
     
     //MARK: - Bar Button IBActions
@@ -50,6 +48,7 @@ class TodayTableView: SwipeTableViewController {
     }
     
     
+    
     //MARK: - Realm Database Methods
     func loadItems() {
         let endOfDay : [Int] = [23-Date().hour, 59-Date().minute, 59-Date().second]
@@ -67,12 +66,12 @@ class TodayTableView: SwipeTableViewController {
         }
     }
     
-    func removeCompletedData() {
+    //Deletes Items which were created before today and are completed
+    @objc func removeCompletedData() {
         var itemsToDelete: Results<ToDoItem>?
         let startOfDay : [Int] = [-Date().hour, -Date().minute, -Date().second]
         let today = (startOfDay[0].hours + startOfDay[1].minutes + startOfDay[2].seconds).fromNow()! as NSDate
-        let predicates = NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "dateCreated < %@", today), NSPredicate(format: "completed == true"), NSPredicate(format: "dailyItem == false")])
-        itemsToDelete = realm.objects(ToDoItem.self).filter(predicates)
+        itemsToDelete = realm.objects(ToDoItem.self).filter(NSPredicate(format: "dateCreated < %@ AND completed == true", today))
         deleteItems(items: itemsToDelete)
         tableView.reloadData()
     }

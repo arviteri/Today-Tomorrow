@@ -17,17 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        //Delete Later
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+        //Set up Realm configurations
+        let fileURL = FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: "group.todo.data")!
+            .appendingPathComponent("default.realm")
+        let config = Realm.Configuration(fileURL: fileURL)
         
         //Attempt to initiate Realm Database
         do {
-            let initiationRealm : Realm = try Realm()
+            let initiationRealm : Realm = try Realm(configuration: config)
             initiationRealm.refresh()
         } catch {
-            print("Error initiating Realm Database:  \(error)")
+            fatalError("Error initiating Realm Database:  \(error)")
         }
-        
+
         return true
     }
 
