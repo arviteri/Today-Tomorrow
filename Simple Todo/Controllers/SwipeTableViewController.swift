@@ -21,7 +21,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.becameActive), name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.viewBecameActive), name: .UIApplicationDidBecomeActive, object: nil)
         tableView.rowHeight = 80
     }
     
@@ -132,7 +132,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
     
     
     //MARK: - Observer Methods
-    @objc func becameActive() {
+    @objc func viewBecameActive() {
         tableView.reloadData()
     }
     

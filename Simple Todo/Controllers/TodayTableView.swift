@@ -14,7 +14,7 @@ class TodayTableView: SwipeTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationResumed), name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.viewBecameActive), name: .UIApplicationDidBecomeActive, object: nil)
         loadItems()
     }
     
@@ -92,7 +92,7 @@ class TodayTableView: SwipeTableViewController {
     
     
     //MARK: - View Methods
-    @objc func applicationResumed() {
+    @objc override func viewBecameActive() {
         removeCompletedData()
         updateDates()
         loadItems()
