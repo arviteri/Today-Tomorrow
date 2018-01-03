@@ -14,7 +14,7 @@ class TodayTableView: SwipeTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.removeCompletedData), name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationResumed), name: .UIApplicationDidBecomeActive, object: nil)
         loadItems()
     }
     
@@ -67,14 +67,12 @@ class TodayTableView: SwipeTableViewController {
     }
     
     //Deletes Items which were created before today and are completed
-    @objc func removeCompletedData() {
-        updateDates()
+    func removeCompletedData() {
         var itemsToDelete: Results<ToDoItem>?
         let startOfDay : [Int] = [-Date().hour, -Date().minute, -Date().second]
         let today = (startOfDay[0].hours + startOfDay[1].minutes + startOfDay[2].seconds).fromNow()! as NSDate
         itemsToDelete = realm.objects(ToDoItem.self).filter(NSPredicate(format: "dateCreated < %@ AND completed == true", today))
         deleteItems(items: itemsToDelete)
-        tableView.reloadData()
     }
     
     //Used to keep items from previous days on list until end of the day. Without this method, old items will be removed after completed and tableView is reloaded
@@ -89,6 +87,16 @@ class TodayTableView: SwipeTableViewController {
                 print("Error updating ToDoItem date in Realm Database: \(error)")
             }
         }
+    }
+    
+    
+    
+    //MARK: - View Methods
+    @objc func applicationResumed() {
+        removeCompletedData()
+        updateDates()
+        loadItems()
+        tableView.reloadData()
     }
     
 }

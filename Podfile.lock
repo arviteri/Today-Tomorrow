@@ -6,7 +6,7 @@ PODS:
   - RealmSwift (3.0.2):
     - Realm (= 3.0.2)
   - SwiftDate (4.5.1)
-  - SwipeCellKit (2.0.0)
+  - SwipeCellKit (2.0.1)
 
 DEPENDENCIES:
   - BEMCheckBox
@@ -19,7 +19,7 @@ SPEC CHECKSUMS:
   Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
   RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
   SwiftDate: 7b56d42a221f582047287deb256b23fc5ed49a60
-  SwipeCellKit: 349c61ffde96ac3ae51c2691a03e421b5b29ee98
+  SwipeCellKit: 76888d93d1843dc568fdf38fff21b15dbbcf6b28
 
 PODFILE CHECKSUM: bc879006416eb8c7bdb7a556f76de0398dc582f7
 
