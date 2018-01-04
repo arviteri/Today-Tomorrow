@@ -152,19 +152,6 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
     
     func loadItems(withPredicate predicate:NSPredicate) {
         todoItems = realm.objects(ToDoItem.self).filter(predicate).sorted(byKeyPath: "dailyItem", ascending: false).sorted(byKeyPath: "isMustDo", ascending: false)
-        do {
-            try realm.write {
-                for item in todoItems! {
-                    if let isYesterday = item.dateCompleted?.isYesterday {
-                        if isYesterday && item.isMustDo {
-                            item.completed = false
-                        }
-                    }
-                }
-            }
-        } catch {
-            
-        }
         tableView.reloadData()
     }
     

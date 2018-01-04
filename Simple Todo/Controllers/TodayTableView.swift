@@ -71,7 +71,7 @@ class TodayTableView: SwipeTableViewController {
         var itemsToDelete: Results<ToDoItem>?
         let startOfDay : [Int] = [-Date().hour, -Date().minute, -Date().second]
         let today = (startOfDay[0].hours + startOfDay[1].minutes + startOfDay[2].seconds).fromNow()! as NSDate
-        itemsToDelete = realm.objects(ToDoItem.self).filter(NSPredicate(format: "dateCreated < %@ AND completed == true", today))
+        itemsToDelete = realm.objects(ToDoItem.self).filter(NSPredicate(format: "dailyItem == false AND dateCreated < %@ AND completed == true", today))
         deleteItems(items: itemsToDelete)
     }
     
@@ -81,7 +81,10 @@ class TodayTableView: SwipeTableViewController {
         for item in itemList {
             do {
                 try realm.write {
-                    if item.dateCreated.isYesterday { item.dateCreated = Date() }
+                    if item.dateCreated.isYesterday {
+                        if item.dailyItem { item.completed = false }
+                        item.dateCreated = Date()
+                    }
                 }
             } catch {
                 print("Error updating ToDoItem date in Realm Database: \(error)")
@@ -94,8 +97,8 @@ class TodayTableView: SwipeTableViewController {
     //MARK: - View Methods
     @objc override func viewBecameActive() {
         removeCompletedData()
-        updateDates()
         loadItems()
+        updateDates()
         tableView.reloadData()
     }
     
