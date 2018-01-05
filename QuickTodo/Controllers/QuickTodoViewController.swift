@@ -52,6 +52,8 @@ class QuickTodoViewController: UITableViewController, NCWidgetProviding, BEMChec
         let cell: CheckBoxCell = tableView.dequeueReusableCell(withIdentifier: "checkBoxCell", for: indexPath) as! CheckBoxCell
         cell.checkBoxView.delegate = self
         cell.checkBoxView.isUserInteractionEnabled = false
+        cell.label?.numberOfLines = 0
+        cell.label?.lineBreakMode = .byWordWrapping
         guard let currentItem = todoItems?[indexPath.row] else {fatalError("FATAL: Error displaying tableview data.")}
         
         //Change label color depending on isMustDo property

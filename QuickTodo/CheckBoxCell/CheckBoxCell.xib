@@ -48,7 +48,7 @@
                         <rect key="frame" x="54" y="0.0" width="266" height="44"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpz-Lj-ucy">
-                                <rect key="frame" x="0.0" y="0.0" width="52" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="256" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -56,6 +56,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="Bpz-Lj-ucy" firstAttribute="leading" secondItem="4gq-ac-gnK" secondAttribute="leading" id="8Nc-0b-Dkn"/>
+                            <constraint firstAttribute="trailing" secondItem="Bpz-Lj-ucy" secondAttribute="trailing" constant="10" id="Qea-Da-GdT"/>
                             <constraint firstItem="Bpz-Lj-ucy" firstAttribute="top" secondItem="4gq-ac-gnK" secondAttribute="top" id="j64-O8-3dd"/>
                             <constraint firstAttribute="bottom" secondItem="Bpz-Lj-ucy" secondAttribute="bottom" id="zCT-5c-gMT"/>
                         </constraints>

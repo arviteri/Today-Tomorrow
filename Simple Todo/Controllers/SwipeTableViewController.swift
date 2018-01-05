@@ -40,6 +40,8 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         guard let currentItem = todoItems?[indexPath.row] else { fatalError("FATAL: Error displaying tableview data.") }
         let todoTitle = currentItem.dailyItem ? "• " + currentItem.title : currentItem.title
         cell.delegate = self
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .byWordWrapping
         
         //Change label color depending on isMustDo property
         if currentItem.isMustDo {
@@ -82,6 +84,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadData()
     }
+    
     
     
     //MARK: - SwipeTableViewCell Delegate Methods
