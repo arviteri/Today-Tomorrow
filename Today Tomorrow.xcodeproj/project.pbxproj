@@ -206,6 +206,7 @@
 			children = (
 				490298501FF9E2C900D74BE0 /* Simple Todo.entitlements */,
 				492452241FF6549C0089EAFE /* AppDelegate.swift */,
+				49457C572000238900D3FB55 /* Protocols */,
 				491743D31FF8870D0026452D /* Data Model */,
 				491743D01FF886800026452D /* Controllers */,
 				491743D11FF886BE0026452D /* Views */,
@@ -213,6 +214,13 @@
 				492452301FF6549C0089EAFE /* Info.plist */,
 			);
 			path = "Simple Todo";
+			sourceTree = "<group>";
+		};
+		49457C572000238900D3FB55 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		793149FF3B65830A2290EBA9 /* Frameworks */ = {
