@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             let initiationRealm : Realm = try Realm(configuration: config)
             initiationRealm.refresh()
+            print(initiationRealm.configuration.fileURL)
         } catch {
             fatalError("Error initiating Realm Database:  \(error)")
         }

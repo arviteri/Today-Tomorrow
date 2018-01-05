@@ -45,6 +45,6 @@ class TomorrowViewController: SwipeTableViewController {
     func loadItems() {
         let endOfDay : [Int] = [23-Date().hour, 59-Date().minute, 59-Date().second]
         let tomorrow = (endOfDay[0].hours + endOfDay[1].minutes + endOfDay[2].seconds).fromNow()! as NSDate
-        super.loadItems(withPredicate: NSPredicate(format: "dateCreated > %@ AND dailyItem == false", tomorrow))
+        super.loadItems(withPredicate: NSPredicate(format: "dateCreated > %@", tomorrow))
     }
 }

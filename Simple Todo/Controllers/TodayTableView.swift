@@ -18,7 +18,9 @@ class TodayTableView: SwipeTableViewController {
         loadItems()
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        viewBecameActive()
+    }
     
     //MARK: - Bar Button IBActions
     @IBAction func dayButtonPressed(_ sender: UIBarButtonItem) {
@@ -53,7 +55,7 @@ class TodayTableView: SwipeTableViewController {
     func loadItems() {
         let endOfDay : [Int] = [23-Date().hour, 59-Date().minute, 59-Date().second]
         let tomorrow = (endOfDay[0].hours + endOfDay[1].minutes + endOfDay[2].seconds).fromNow()! as NSDate
-        super.loadItems(withPredicate: NSPredicate(format: "dateCreated <= %@ OR dailyItem == true", tomorrow))
+        super.loadItems(withPredicate: NSPredicate(format: "dateCreated <= %@", tomorrow))
     }
     
     func deleteItems(items: Results<ToDoItem>?) {

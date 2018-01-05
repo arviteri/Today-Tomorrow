@@ -82,7 +82,6 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadData()
     }
-
     
     
     //MARK: - SwipeTableViewCell Delegate Methods
@@ -97,19 +96,30 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         deleteAction.image = UIImage(named: "Trash")
         
         //Mark-as-Daily Action
-        let markDailyTitle = currentItem.dailyItem ? "Unmark As Daily" : "Mark As Daily"
+        let markDailyTitle = currentItem.dailyItem ? "Undo Daily Item" : "Daily Item"
         let markDailyAction = SwipeAction(style: .default, title: markDailyTitle) { (action, indexPath) in
             self.markDailyItem(item: currentItem, at: indexPath)
         }
         markDailyAction.image = UIImage(named: "Calendar")
         
-        return [deleteAction, markDailyAction]
+        let switchDayTitle = currentItem.dateCreated.isToday ? "For Tomorrow" : "For Today"
+        let switchDayAction = SwipeAction(style: .default, title: switchDayTitle) { (action, indexPath) in
+            self.switchDay(item: currentItem, at: indexPath)
+        }
+        switchDayAction.image = currentItem.dateCreated.isToday ? UIImage(named: "RightArrow") : UIImage(named: "LeftArrow")
+        switchDayAction.backgroundColor = UIColor.orange
+        
+        if currentItem.dailyItem {
+            return [deleteAction, markDailyAction]
+        } else {
+            return [deleteAction, markDailyAction, switchDayAction]
+        }
     }
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
         var options = SwipeTableOptions()
         options.expansionStyle = .destructive
-        options.transitionStyle = .drag
+        options.transitionStyle = .border
         return options
     }
     
@@ -167,6 +177,9 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         }
     }
     
+    
+    
+    //MARK: - SwipeCellKit Action Methods
     func markDailyItem(item: ToDoItem, at indexPath: IndexPath) {
         let deadlineTime = DispatchTime.now() + 0.5 //Used to wait for animation to complete
         let currentCell = tableView.cellForRow(at: indexPath) as! SwipeTableViewCell
@@ -174,6 +187,25 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         do {
             try self.realm.write {
                 item.dailyItem = !item.dailyItem
+                item.dateCreated = Date()
+            }
+        } catch {
+            print("Error modifying ToDoItem attribute in Realm Database: \(error)")
+        }
+        
+        currentCell.hideSwipe(animated: true)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func switchDay(item: ToDoItem, at indexPath: IndexPath) {
+        let deadlineTime = DispatchTime.now() + 0.5 //Used to wait for animation to complete
+        let currentCell = tableView.cellForRow(at: indexPath) as! SwipeTableViewCell
+        
+        do {
+            try self.realm.write {
+                item.dateCreated = item.dateCreated.isToday ? (1.days).fromNow()! : Date()
             }
         } catch {
             print("Error modifying ToDoItem attribute in Realm Database: \(error)")
