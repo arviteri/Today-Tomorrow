@@ -24,7 +24,14 @@ To get ahead of the game and to be prepared, Today Tomorrow provides a to-do lis
 
 Mark an item as a 'Daily Item' to reset the item at the end of the day without having it dissapear. To mark an item as a 'Daily Item' swipe over the item from the right to reveal the item's options. Tap on "Mark As Daily." Unmarking the item follows the same process. Daily Item's are marked with a bullet point.
 
-<img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/daily.png" width="350">
+<img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/newdaily.png" width="350">
+<br />
+
+### Move To Tomorrow: 
+
+Have plans changed? Need to do an item tomorrow instead of today or vice versa? Move an item between to-do lists by swiping over from the right to reveal the item's options. Tap on "For Tomorrow" or "For Today" to move the item the corresponding to-do list. 
+
+<img src="https://github.com/arviteri/Today_Tomorrow/blob/master/ImageFiles/newdaily.png" width="350">
 <br />
 
 ### Swipe Deletion:
