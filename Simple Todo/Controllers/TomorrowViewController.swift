@@ -30,7 +30,7 @@ class TomorrowViewController: SwipeTableViewController {
             currentTextField.autocapitalizationType = .words
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             alert.dismiss(animated: true, completion: nil)
         }
         
