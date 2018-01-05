@@ -57,8 +57,8 @@
                         <constraints>
                             <constraint firstItem="Bpz-Lj-ucy" firstAttribute="leading" secondItem="4gq-ac-gnK" secondAttribute="leading" id="8Nc-0b-Dkn"/>
                             <constraint firstAttribute="trailing" secondItem="Bpz-Lj-ucy" secondAttribute="trailing" constant="10" id="Qea-Da-GdT"/>
-                            <constraint firstItem="Bpz-Lj-ucy" firstAttribute="top" secondItem="4gq-ac-gnK" secondAttribute="top" id="j64-O8-3dd"/>
-                            <constraint firstAttribute="bottom" secondItem="Bpz-Lj-ucy" secondAttribute="bottom" id="zCT-5c-gMT"/>
+                            <constraint firstItem="Bpz-Lj-ucy" firstAttribute="top" secondItem="4gq-ac-gnK" secondAttribute="top" id="jJh-LG-sPF"/>
+                            <constraint firstAttribute="bottom" secondItem="Bpz-Lj-ucy" secondAttribute="bottom" id="pJA-Xr-43H"/>
                         </constraints>
                     </view>
                 </subviews>
