@@ -30,13 +30,14 @@ class TodayTableView: SwipeTableViewController {
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Add A New Todo!", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add A New Todo!", message: nil , preferredStyle: .alert)
         var currentTextField = UITextField()
         alert.addTextField() { (textField) in
             currentTextField = textField
             currentTextField.placeholder = "What do you need to do?"
             currentTextField.textAlignment = .center
             currentTextField.autocapitalizationType = .words
+            currentTextField.autocorrectionType = .yes
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
