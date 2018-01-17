@@ -42,6 +42,7 @@ class TomorrowViewController: SwipeTableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    
     //MARK: - Realm Database Methods
     func loadItems() {
         let endOfDay : [Int] = [23-Date().hour, 59-Date().minute, 59-Date().second]
