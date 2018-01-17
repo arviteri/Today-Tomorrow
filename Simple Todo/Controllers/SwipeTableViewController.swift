@@ -60,6 +60,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
                  attributedString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: NSMakeRange(0, attributedString.length))
             }
             cell.textLabel?.attributedText = attributedString
+            cell.textLabel?.textColor = UIColor.lightGray
             cell.accessoryType = .checkmark
         } else {
             cell.textLabel?.attributedText = NSMutableAttributedString(string: todoTitle)
