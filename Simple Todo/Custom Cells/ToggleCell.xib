@@ -19,14 +19,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg4-aW-x0U">
-                        <rect key="frame" x="16" y="0.0" width="97" height="43.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg4-aW-x0U">
+                        <rect key="frame" x="16" y="0.0" width="142" height="43.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="zjE-4S-gC0">
                         <rect key="frame" x="255" y="6" width="51" height="31"/>
+                        <connections>
+                            <action selector="toggleSwitched:" destination="KGk-i7-Jjw" eventType="valueChanged" id="WWG-mx-nGB"/>
+                        </connections>
                     </switch>
                 </subviews>
                 <constraints>
@@ -40,6 +43,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="label" destination="qg4-aW-x0U" id="P9I-yO-QE5"/>
+                <outlet property="toggle" destination="zjE-4S-gC0" id="o3D-ka-l31"/>
             </connections>
         </tableViewCell>
     </objects>

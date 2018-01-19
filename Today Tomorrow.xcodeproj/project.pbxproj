@@ -27,7 +27,9 @@
 		4960FECB20110A650077CD6F /* ToggleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4960FEC920110A650077CD6F /* ToggleCell.xib */; };
 		4960FECF20110A7D0077CD6F /* SelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4960FECD20110A7D0077CD6F /* SelectionCell.xib */; };
 		49E3F99C20117A6200BE2ABB /* NotificationToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3F99B20117A6200BE2ABB /* NotificationToggleCell.swift */; };
-		49E3F99E2011809800BE2ABB /* NotificationInvertvalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3F99D2011809800BE2ABB /* NotificationInvertvalCell.swift */; };
+		49E3F99E2011809800BE2ABB /* NotificationIntervalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E3F99D2011809800BE2ABB /* NotificationIntervalCell.swift */; };
+		49F17DFF2012731F00185CBD /* NotificationInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F17DFE2012731F00185CBD /* NotificationInterval.swift */; };
+		49F17E012012737500185CBD /* NotificationIntervalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F17E002012737500185CBD /* NotificationIntervalController.swift */; };
 		83FD605A859F5A0DBF0D9C85 /* Pods_QuickTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F3E59C4FEE9BAEA77DE2D63 /* Pods_QuickTodo.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,7 +85,9 @@
 		4960FEC920110A650077CD6F /* ToggleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleCell.xib; sourceTree = "<group>"; };
 		4960FECD20110A7D0077CD6F /* SelectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectionCell.xib; sourceTree = "<group>"; };
 		49E3F99B20117A6200BE2ABB /* NotificationToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationToggleCell.swift; sourceTree = "<group>"; };
-		49E3F99D2011809800BE2ABB /* NotificationInvertvalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInvertvalCell.swift; sourceTree = "<group>"; };
+		49E3F99D2011809800BE2ABB /* NotificationIntervalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationIntervalCell.swift; sourceTree = "<group>"; };
+		49F17DFE2012731F00185CBD /* NotificationInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInterval.swift; sourceTree = "<group>"; };
+		49F17E002012737500185CBD /* NotificationIntervalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationIntervalController.swift; sourceTree = "<group>"; };
 		8A8B9357B5412BC1C852D1FE /* Pods-QuickTodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickTodo.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickTodo/Pods-QuickTodo.release.xcconfig"; sourceTree = "<group>"; };
 		B4B4D6DC9A27364C633E30F0 /* Pods-Simple Todo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple Todo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Simple Todo/Pods-Simple Todo.debug.xcconfig"; sourceTree = "<group>"; };
 		B74F18DB53F4372B2813FE70 /* Pods-Simple Todo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple Todo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Simple Todo/Pods-Simple Todo.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 				491743CE1FF885DE0026452D /* SwipeTableViewController.swift */,
 				491743CC1FF881FC0026452D /* TomorrowViewController.swift */,
 				4960FEC52010FC490077CD6F /* SettingsViewController.swift */,
+				49F17E002012737500185CBD /* NotificationIntervalController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				491743D41FF887300026452D /* ToDoItem.swift */,
+				49F17DFE2012731F00185CBD /* NotificationInterval.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -232,7 +238,7 @@
 			children = (
 				49E3F99B20117A6200BE2ABB /* NotificationToggleCell.swift */,
 				4960FEC920110A650077CD6F /* ToggleCell.xib */,
-				49E3F99D2011809800BE2ABB /* NotificationInvertvalCell.swift */,
+				49E3F99D2011809800BE2ABB /* NotificationIntervalCell.swift */,
 				4960FECD20110A7D0077CD6F /* SelectionCell.xib */,
 			);
 			path = "Custom Cells";
@@ -329,6 +335,9 @@
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 0;
 							};
 						};
 					};
@@ -490,9 +499,11 @@
 				492452251FF6549C0089EAFE /* AppDelegate.swift in Sources */,
 				491743D51FF887300026452D /* ToDoItem.swift in Sources */,
 				491743C91FF87D3A0026452D /* TodayTableView.swift in Sources */,
+				49F17DFF2012731F00185CBD /* NotificationInterval.swift in Sources */,
 				491743CD1FF881FC0026452D /* TomorrowViewController.swift in Sources */,
-				49E3F99E2011809800BE2ABB /* NotificationInvertvalCell.swift in Sources */,
+				49E3F99E2011809800BE2ABB /* NotificationIntervalCell.swift in Sources */,
 				491743CF1FF885DE0026452D /* SwipeTableViewController.swift in Sources */,
+				49F17E012012737500185CBD /* NotificationIntervalController.swift in Sources */,
 				4960FEC62010FC490077CD6F /* SettingsViewController.swift in Sources */,
 				49E3F99C20117A6200BE2ABB /* NotificationToggleCell.swift in Sources */,
 			);
