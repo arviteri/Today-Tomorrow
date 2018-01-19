@@ -17,11 +17,6 @@ class NotificationToggleCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
-        if UIApplication.shared.isRegisteredForRemoteNotifications {
-            toggle.isOn = true
-        } else {
-            toggle.isOn = false
-        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
