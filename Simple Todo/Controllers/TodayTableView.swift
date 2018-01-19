@@ -29,6 +29,13 @@ class TodayTableView: SwipeTableViewController {
         }
     }
     
+    @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
+        if sender.tag == 0 {
+            performSegue(withIdentifier: "goToSettings", sender: self)
+        }
+    }
+    
+    
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add A New Todo!", message: nil , preferredStyle: .alert)
         var currentTextField = UITextField()
