@@ -84,7 +84,7 @@ class TodayTableView: SwipeTableViewController {
         for item in itemList {
             do {
                 try realm.write {
-                    if item.dateCreated.isYesterday {
+                    if item.dateCreated.isYesterday || item.dateCreated.isBefore(date: Date().atTime(hour: 0, minute: 0, second: 0)!, granularity: Calendar.Component.day) {
                         if item.dailyItem { item.completed = false }
                         item.dateCreated = Date()
                     }
